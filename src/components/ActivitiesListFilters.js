@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setFilterText, setFilterType, sortByName, sortBySkill } from '../actions/filters';
+import { setFilterText, setFilterType, sortByName, sortByDistance } from '../actions/filters';
 
-const PlayersListFilters = (props) => (
-    <div className="players-list-filters">
-        <h2>Filter Players</h2>
+const ActivitiesListFilters = (props) => (
+    <div className="activities-list-filters">
+        <h2>Filter Activities</h2>
         <div className="filter-group">
             <label>Search For:</label><br />
             <input type="text" value={props.filters.text} onChange={(e) => {
@@ -17,24 +17,24 @@ const PlayersListFilters = (props) => (
                 if (e.target.value === "name") {
                     props.dispatch(sortByName());
                 }
-                else if (e.target.value === "skill_level") {
-                    props.dispatch(sortBySkill());
+                else if (e.target.value === "distance") {
+                    props.dispatch(sortByDistance());
                 }
             }}>
                 <option value="name">Name</option>
-                <option value="skill_level">Skill Level</option>
+                <option value="distance">Distance</option>
             </select>
         </div>
         <div className="filter-group">
-            <label>Sport Type:</label><br />
+            <label>Activity Type:</label><br />
             <select onChange={(e) => {
                 props.dispatch(setFilterType(e.target.value));
             }}>
                 <option value="all">All</option>
-                <option value="hockey">Hockey</option>
-                <option value="baseball">Baseball</option>
-                <option value="softball">Softball</option>
-                <option value="basketball">Basketball</option>
+                <option value="running">Running</option>
+                <option value="walking">Walking</option>
+                <option value="cycling">Cycling</option>
+                <option value="swimming">Swimming</option>
             </select>
         </div>
     </div>
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PlayersListFilters);
+export default connect(mapStateToProps)(ActivitiesListFilters);
